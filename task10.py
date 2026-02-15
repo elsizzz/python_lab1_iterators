@@ -1,3 +1,4 @@
+# task10_loadtest.py
 from datetime import datetime, timedelta
 import time
 
@@ -14,25 +15,24 @@ class Movie:
                 current += timedelta(days=1)
 
 def load_test_yield():
-    """Тест производительности с yield"""
-    print("Генератор с yield")
+    """Тест производительности с yield и выводом дат"""
+    print("ТЕСТ 1: Генератор с yield (с выводом дат)")
     
     # Создаем периоды с большим количеством дней
     periods = [
-        (datetime(2020, 1, 1), datetime(2025, 12, 31)),  # ~2190 дней
-        (datetime(2026, 1, 1), datetime(2030, 12, 31)),  # ~1825 дней
-        (datetime(2031, 1, 1), datetime(2035, 12, 31)),  # ~1825 дней
+        (datetime(2020, 1, 1), datetime(2020, 1, 10)),  # 10 дней для примера
+        (datetime(2020, 2, 1), datetime(2020, 2, 5)),   # 5 дней
     ]
     
     movie = Movie("Нагрузочный тест", periods)
     start_time = time.time()
     
     count = 0
-    # Перебираем все даты
+    # Перебираем и ВЫВОДИМ все даты
     for date in movie.schedule():
         count += 1
-        if count % 500 == 0:  # Показываем прогресс каждые 500 дат
-            print(f"  Обработано {count} дат...")
+        # Выводим дату в формате ГГГГ-ММ-ДД
+        print(f"  {count:3d}. {date.strftime('%Y-%m-%d')}")
     
     end_time = time.time()
     elapsed_time = end_time - start_time
