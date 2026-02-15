@@ -1,14 +1,12 @@
 # task1.py
 
 def custom_any(lst):
-    """Проверяет, содержит ли список хотя бы одно положительное число."""
     for item in lst:
         if isinstance(item, (int, float)) and item > 0:
             return True
     return False
 
 def custom_all(lst):
-    """Проверяет, состоят ли все элементы списка только из чисел."""
     for item in lst:
         if not isinstance(item, (int, float)):
             return False

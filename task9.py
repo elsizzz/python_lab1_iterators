@@ -3,15 +3,6 @@ import random
 from string import ascii_lowercase, ascii_uppercase
 
 def password_generator(N):
-    """
-    Генератор, который бесконечно генерирует случайные пароли длиной N.
-    
-    Args:
-        N (int): Длина пароля
-    
-    Yields:
-        str: Случайный пароль длиной N символов
-    """
     # Формируем строку доступных символов
     chars = ascii_lowercase + ascii_uppercase + "0123456789!?@#$*"
     
@@ -22,7 +13,6 @@ def password_generator(N):
         yield password
 
 def main():
-    """Основная функция для демонстрации работы генератора."""
     print("Генератор случайных паролей")
     
     # Длина пароля согласно варианту (N=12)
@@ -32,7 +22,7 @@ def main():
     gen = password_generator(N)
     
     # Выводим первые 5 паролей
-    print(f"Первые 5 паролей длиной {N} символов:")
+    print(f"Первые 5 паролей:")
     
     for i in range(1, 6):
         password = next(gen)
@@ -40,15 +30,13 @@ def main():
     
     # Демонстрация бесконечности генератора
     print("\n")
-    print("Демонстрация бесконечной работы генератора:")
-    print("(следующие 3 пароля)")
+    print("Следующие 3 пароля")
     
     for i in range(6, 9):
         password = next(gen)
         print(f"{i}. {password}")
 
 def test_generator():
-    """Тестовая функция для проверки работы генератора."""
     print("\n")
     print("Тестирование генератора:")
     
@@ -61,7 +49,7 @@ def test_generator():
     print(f"1. Длина всех паролей равна {N}:", 
           all(len(p) == N for p in passwords))
     
-    # Проверяем, что пароли разные (с большой вероятностью)
+    # Проверяем, что пароли разные 
     print(f"2. Все пароли разные:", len(set(passwords)) == 3)
     
     # Проверяем, что используются только допустимые символы
